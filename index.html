@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html ng-app="app">
-    <head>
-        <meta charset="utf-8">
-        <title>Angular Project</title>
-    </head>
-    <body ng-controller='mainController as vm'>
 
-        <script src="js/libs/angular.min.js"></script>
-        <script src="js/controllers/mainController.js"></script>
-        <script src="js/app.js"></script>
-    </body>
-</html>
+<head>
+    <meta charset="utf-8">
+    <title>Angular Project</title>
+</head>
+
+<body ng-controller='mainController'>
+    <form name="newUserForm">
+        <label>
+            First name:
+      <input type="text" ng-model="newUser.firstName" ng-model-options="{ updateOn: 'blur' }" name="firstName" required=""/>
+      </label>
+        <br />
+        <label>
+            Last Name:
+    <input type="text" ng-model="newUser.lastName" ng-model-options="{ updateOn: 'blur' }" name="lastName" required=""/>
+    </label>
+        <br />
+        <label>
+            E-mail:
+      <input type="email" ng-model="newUser.email" ng-model-options="{ updateOn: 'blur' }" name="email" required="" />
+    </label>
+        <br /><br />
+        <button ng-click="addUsers(newUser)"/>Ajouter</button>
+    </form>
+    <table>
+        <tr ng-repeat="user in users track by $index">
+            <td>
+                {{ user.firstName}} {{ user.lastName}}, {{ user.email }}
+            </td>
+        </tr>
+    </table>
+
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/mainController.js"></script>
+    <script src="js/service/usersFactory.js"></script>
